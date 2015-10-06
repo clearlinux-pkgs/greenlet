@@ -4,7 +4,7 @@
 #
 Name     : greenlet
 Version  : 0.4.9
-Release  : 14
+Release  : 15
 URL      : https://pypi.python.org/packages/source/g/greenlet/greenlet-0.4.9.zip
 Source0  : https://pypi.python.org/packages/source/g/greenlet/greenlet-0.4.9.zip
 Summary  : Lightweight in-process concurrent programming
@@ -65,7 +65,7 @@ python3 setup.py build -b py3 install --root=%{buildroot}
 %files dev
 %defattr(-,root,root,-)
 /usr/include/python2.7/greenlet/greenlet.h
-/usr/include/python3.4m/greenlet/greenlet.h
+/usr/include/python3.5m/greenlet/greenlet.h
 
 %files python
 %defattr(-,root,root,-)
