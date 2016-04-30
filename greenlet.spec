@@ -4,7 +4,7 @@
 #
 Name     : greenlet
 Version  : 0.4.9
-Release  : 17
+Release  : 18
 URL      : https://pypi.python.org/packages/source/g/greenlet/greenlet-0.4.9.zip
 Source0  : https://pypi.python.org/packages/source/g/greenlet/greenlet-0.4.9.zip
 Summary  : Lightweight in-process concurrent programming
