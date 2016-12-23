@@ -4,7 +4,7 @@
 #
 Name     : greenlet
 Version  : 0.4.10
-Release  : 24
+Release  : 25
 URL      : http://pypi.debian.net/greenlet/greenlet-0.4.10.zip
 Source0  : http://pypi.debian.net/greenlet/greenlet-0.4.10.zip
 Summary  : Lightweight in-process concurrent programming
@@ -67,7 +67,7 @@ python3 -tt setup.py build -b py3 install --root=%{buildroot}
 %files dev
 %defattr(-,root,root,-)
 /usr/include/python2.7/greenlet/greenlet.h
-/usr/include/python3.5m/greenlet/greenlet.h
+/usr/include/python3.6m/greenlet/greenlet.h
 
 %files python
 %defattr(-,root,root,-)
