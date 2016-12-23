@@ -4,7 +4,7 @@
 #
 Name     : greenlet
 Version  : 0.4.10
-Release  : 23
+Release  : 24
 URL      : http://pypi.debian.net/greenlet/greenlet-0.4.10.zip
 Source0  : http://pypi.debian.net/greenlet/greenlet-0.4.10.zip
 Summary  : Lightweight in-process concurrent programming
