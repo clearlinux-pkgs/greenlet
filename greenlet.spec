@@ -4,7 +4,7 @@
 #
 Name     : greenlet
 Version  : 0.4.12
-Release  : 27
+Release  : 28
 URL      : http://pypi.debian.net/greenlet/greenlet-0.4.12.tar.gz
 Source0  : http://pypi.debian.net/greenlet/greenlet-0.4.12.tar.gz
 Summary  : Lightweight in-process concurrent programming
