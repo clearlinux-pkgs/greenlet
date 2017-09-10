@@ -4,12 +4,13 @@
 #
 Name     : greenlet
 Version  : 0.4.12
-Release  : 29
+Release  : 30
 URL      : http://pypi.debian.net/greenlet/greenlet-0.4.12.tar.gz
 Source0  : http://pypi.debian.net/greenlet/greenlet-0.4.12.tar.gz
 Summary  : Lightweight in-process concurrent programming
 Group    : Development/Tools
 License  : MIT Python-2.0
+Requires: greenlet-legacypython
 Requires: greenlet-python
 BuildRequires : pbr
 BuildRequires : pip
@@ -35,9 +36,18 @@ Provides: greenlet-devel
 dev components for the greenlet package.
 
 
+%package legacypython
+Summary: legacypython components for the greenlet package.
+Group: Default
+
+%description legacypython
+legacypython components for the greenlet package.
+
+
 %package python
 Summary: python components for the greenlet package.
 Group: Default
+Requires: greenlet-legacypython
 
 %description python
 python components for the greenlet package.
@@ -51,7 +61,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1503090002
+export SOURCE_DATE_EPOCH=1505003159
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -61,7 +71,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
 %install
-export SOURCE_DATE_EPOCH=1503090002
+export SOURCE_DATE_EPOCH=1505003159
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -77,7 +87,10 @@ echo ----[ mark ]----
 /usr/include/python2.7/greenlet/greenlet.h
 /usr/include/python3.6m/greenlet/greenlet.h
 
-%files python
+%files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files python
+%defattr(-,root,root,-)
 /usr/lib/python3*/*
