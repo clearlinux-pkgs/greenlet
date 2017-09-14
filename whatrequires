@@ -1,2 +1,2 @@
 # This file contains recursive sources that require this package
-gevent-0:1.2.2-9.src
+gevent
