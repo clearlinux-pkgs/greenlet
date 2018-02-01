@@ -1,5 +1,5 @@
 PKG_NAME := greenlet
-URL := http://pypi.debian.net/greenlet/greenlet-0.4.12.tar.gz
-
+URL = http://pypi.debian.net/greenlet/greenlet-0.4.13.tar.gz
+ARCHIVES = 
 
 include ../common/Makefile.common
