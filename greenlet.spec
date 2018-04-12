@@ -4,13 +4,12 @@
 #
 Name     : greenlet
 Version  : 0.4.13
-Release  : 36
+Release  : 37
 URL      : http://pypi.debian.net/greenlet/greenlet-0.4.13.tar.gz
 Source0  : http://pypi.debian.net/greenlet/greenlet-0.4.13.tar.gz
 Summary  : Lightweight in-process concurrent programming
 Group    : Development/Tools
 License  : MIT Python-2.0
-Requires: greenlet-legacypython
 Requires: greenlet-python3
 Requires: greenlet-python
 BuildRequires : pbr
@@ -37,19 +36,9 @@ Provides: greenlet-devel
 dev components for the greenlet package.
 
 
-%package legacypython
-Summary: legacypython components for the greenlet package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the greenlet package.
-
-
 %package python
 Summary: python components for the greenlet package.
 Group: Default
-Requires: greenlet-legacypython
 Requires: greenlet-python3
 
 %description python
@@ -73,8 +62,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517519058
-python2 setup.py build -b py2
+export SOURCE_DATE_EPOCH=1523565826
 python3 setup.py build -b py3
 
 %check
@@ -83,10 +71,8 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
 %install
-export SOURCE_DATE_EPOCH=1517519058
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -96,12 +82,7 @@ echo ----[ mark ]----
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/python2.7/greenlet/greenlet.h
 /usr/include/python3.6m/greenlet/greenlet.h
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files python
 %defattr(-,root,root,-)
