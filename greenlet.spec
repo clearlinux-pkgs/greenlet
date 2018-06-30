@@ -4,20 +4,20 @@
 #
 Name     : greenlet
 Version  : 0.4.13
-Release  : 41
+Release  : 42
 URL      : http://pypi.debian.net/greenlet/greenlet-0.4.13.tar.gz
 Source0  : http://pypi.debian.net/greenlet/greenlet-0.4.13.tar.gz
 Summary  : Lightweight in-process concurrent programming
 Group    : Development/Tools
 License  : MIT Python-2.0
 Requires: greenlet-python3
+Requires: greenlet-license
 Requires: greenlet-python
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
-
 BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : tox
@@ -34,6 +34,14 @@ Provides: greenlet-devel
 
 %description dev
 dev components for the greenlet package.
+
+
+%package license
+Summary: license components for the greenlet package.
+Group: Default
+
+%description license
+license components for the greenlet package.
 
 
 %package python
@@ -62,16 +70,19 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523565826
+export SOURCE_DATE_EPOCH=1530327028
 python3 setup.py build -b py3
 
 %check
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
+PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/greenlet
+cp LICENSE.PSF %{buildroot}/usr/share/doc/greenlet/LICENSE.PSF
+cp LICENSE %{buildroot}/usr/share/doc/greenlet/LICENSE
 python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -82,7 +93,12 @@ echo ----[ mark ]----
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/python3.6m/greenlet/greenlet.h
+/usr/include/python3.7m/greenlet/greenlet.h
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/greenlet/LICENSE
+/usr/share/doc/greenlet/LICENSE.PSF
 
 %files python
 %defattr(-,root,root,-)
