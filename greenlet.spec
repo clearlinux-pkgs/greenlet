@@ -4,15 +4,15 @@
 #
 Name     : greenlet
 Version  : 0.4.15
-Release  : 51
+Release  : 52
 URL      : https://files.pythonhosted.org/packages/f8/e8/b30ae23b45f69aa3f024b46064c0ac8e5fcb4f22ace0dca8d6f9c8bbe5e7/greenlet-0.4.15.tar.gz
 Source0  : https://files.pythonhosted.org/packages/f8/e8/b30ae23b45f69aa3f024b46064c0ac8e5fcb4f22ace0dca8d6f9c8bbe5e7/greenlet-0.4.15.tar.gz
 Summary  : Lightweight in-process concurrent programming
 Group    : Development/Tools
 License  : MIT Python-2.0
-Requires: greenlet-python3
-Requires: greenlet-license
-Requires: greenlet-python
+Requires: greenlet-license = %{version}-%{release}
+Requires: greenlet-python = %{version}-%{release}
+Requires: greenlet-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : pluggy
 BuildRequires : py-python
@@ -28,7 +28,8 @@ BuildRequires : virtualenv
 %package dev
 Summary: dev components for the greenlet package.
 Group: Development
-Provides: greenlet-devel
+Provides: greenlet-devel = %{version}-%{release}
+Requires: greenlet = %{version}-%{release}
 
 %description dev
 dev components for the greenlet package.
@@ -45,7 +46,7 @@ license components for the greenlet package.
 %package python
 Summary: python components for the greenlet package.
 Group: Default
-Requires: greenlet-python3
+Requires: greenlet-python3 = %{version}-%{release}
 
 %description python
 python components for the greenlet package.
@@ -62,26 +63,34 @@ python3 components for the greenlet package.
 
 %prep
 %setup -q -n greenlet-0.4.15
+cd %{_builddir}/greenlet-0.4.15
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1536423644
-python3 setup.py build -b py3
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1574201658
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
+export MAKEFLAGS=%{?_smp_mflags}
+python3 setup.py build
 
 %check
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test
+PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python setup.py test
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/greenlet
-cp LICENSE %{buildroot}/usr/share/doc/greenlet/LICENSE
-cp LICENSE.PSF %{buildroot}/usr/share/doc/greenlet/LICENSE.PSF
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/greenlet
+cp %{_builddir}/greenlet-0.4.15/LICENSE %{buildroot}/usr/share/package-licenses/greenlet/9562371a57ed564c4e61c368f355fa43cf665e2e
+cp %{_builddir}/greenlet-0.4.15/LICENSE.PSF %{buildroot}/usr/share/package-licenses/greenlet/c0710216ad228c4f1738a3212542f827d6fec097
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -91,12 +100,12 @@ echo ----[ mark ]----
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/python3.7m/greenlet/greenlet.h
+/usr/include/python3.8/greenlet/greenlet.h
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/greenlet/LICENSE
-/usr/share/doc/greenlet/LICENSE.PSF
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/greenlet/9562371a57ed564c4e61c368f355fa43cf665e2e
+/usr/share/package-licenses/greenlet/c0710216ad228c4f1738a3212542f827d6fec097
 
 %files python
 %defattr(-,root,root,-)
