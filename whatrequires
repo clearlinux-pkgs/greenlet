@@ -2,7 +2,9 @@
 aioeventlet
 cinder
 eventlet
+gevent
 nova
 oslo.privsep
 oslo.service
 pynvim
+swift
