@@ -4,7 +4,7 @@
 #
 Name     : greenlet
 Version  : 1.0.0
-Release  : 66
+Release  : 67
 URL      : https://files.pythonhosted.org/packages/92/be/878cc5314fa5aadce33e68738c1a24debe317605196bdfc2049e66bc9c30/greenlet-1.0.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/92/be/878cc5314fa5aadce33e68738c1a24debe317605196bdfc2049e66bc9c30/greenlet-1.0.0.tar.gz
 Summary  : Lightweight in-process concurrent programming
