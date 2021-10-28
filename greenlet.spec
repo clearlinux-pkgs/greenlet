@@ -4,7 +4,7 @@
 #
 Name     : greenlet
 Version  : 1.1.2
-Release  : 73
+Release  : 74
 URL      : https://files.pythonhosted.org/packages/0c/10/754e21b5bea89d0e73f99d60c83754df7cc64db74f47d98ab187669ce341/greenlet-1.1.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/0c/10/754e21b5bea89d0e73f99d60c83754df7cc64db74f47d98ab187669ce341/greenlet-1.1.2.tar.gz
 Summary  : Lightweight in-process concurrent programming
@@ -72,7 +72,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1634340404
+export SOURCE_DATE_EPOCH=1635443628
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -97,7 +97,7 @@ echo ----[ mark ]----
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/python3.9/greenlet/greenlet.h
+/usr/include/python3.10/greenlet/greenlet.h
 
 %files license
 %defattr(0644,root,root,0755)
